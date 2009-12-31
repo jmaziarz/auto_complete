@@ -16,6 +16,18 @@ the find method used to search for the records:
 
   auto_complete_for :post, :title, :limit => 15, :order => 'created_at DESC'
 
+This fork adds the record id to the list content tag. The id can then be used
+in an :after_update_element.
+
+Example: 
+
+# View
+
+<%= text_field_with_auto_complete :person, :first_name, {}, 
+    { :method => :get, 
+      :after_update_element => "function(element,value)
+        { window.location.href = '/people/'+value.id+'/edit' }" } %> 
+
 For more examples, see script.aculo.us:
 * http://script.aculo.us/demos/ajax/autocompleter
 * http://script.aculo.us/demos/ajax/autocompleter_customized
